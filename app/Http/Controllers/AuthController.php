@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -33,11 +35,14 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed'],
             'email' => ['required','unique:App\Models\User,email']
         ]);
+
         $object = new User;
+        
         $object->name = $request->name;
         $object->email = $request->email;
-        $object->password = $request->password;
+        $object->password = Hash::make($request->password);
         $object->save();
+        // dd($object);
         return redirect()->route('to.login')
         ->with('success', 'profil registered successfully');
 
