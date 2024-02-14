@@ -14,8 +14,7 @@ class AuthController extends Controller
         if(Auth::attempt($userData)){
             $user = Auth::user();
             session()->put('user_id', $user->id);
-            session()->put('user_first_name', $user->first_name);
-            session()->put('user_last_name', $user->last_name);
+            session()->put('user_name', $user->name);
             return view('home');
         }else{
             return redirect()->route('to.login');

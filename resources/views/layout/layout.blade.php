@@ -84,7 +84,7 @@
                                         <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
                                     </div>
                                     <div class="col-8 d-flex align-items-center">
-                                        <h3>{{ session('user_last_name') }}</h3>
+                                        <h3>{{ session('user_name') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -114,7 +114,7 @@
                 <aside class="p-4 aside">
                     <ul class="list-group">
                         <li class="text-light">
-                            <h3>{{ session('user_last_name') }}</h3>
+                            <h3>{{ session('user_name') }}</h3>
                         </li>
                         <li class="text-light">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
