@@ -19,6 +19,40 @@
         .main-content {
             height: 100vh;
         }
+
+        .aside {
+            height: 100vh;
+        }
+
+        aside li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: .3s;
+            list-style-type: none;
+        }
+
+        aside li a{
+            text-decoration: none;
+            color: white;
+        }
+
+        aside li:hover {
+
+            background-color: #747474;
+        }
+
+        /* .img-rounded {
+            border-radius: 100px;
+        } */
+
+        .search-container {
+            background-color: #747474;
+        }
+
+        /* aside li:hover a {
+            color: #747474;
+        } */
     </style>
 </head>
 
@@ -27,7 +61,7 @@
         <div class="container d-flex justify-content-between align-items-center nav-container">
             <div class="">
                 <a href="" class="navbar-brand">
-                    <h2 class="text-light">YouConnecte</h2>
+                    <h2 class="text-light">@yield('title', 'YouConnecte')</h2>
                 </a>
             </div>
             <div class="">
@@ -42,28 +76,46 @@
         <div class="row main-content">
             <div class="col-md-3">
                 <aside class="p-4 aside">
-                    <ul>
-                        <li class="text-light"><h3>{{ session('user_id') }}</h3></li>
-                        <li class="text-light">vvvvvvvvvv</li>
+                    <ul class="list-group">
+                        <li class="text-light">
+                            <a href="">
+                                <div class="d-flex row rounded">
+                                    <div class="col-4 d-flex align-items-center justify-content-start p-2">
+                                        <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
+                                    </div>
+                                    <div class="col-8 d-flex align-items-center">
+                                        <h3>{{ session('user_last_name') }}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="text-ligh">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
                     </ul>
                 </aside>
             </div>
-            <div class="col-md-6">
+            <div class="container col-md-6">
+                <div class="search-container d-flex justify-content-center mt-3 w-75 row rounded">
+                    <div class="col-md-3 d-flex align-items-center justify-content-center p-2">
+                        <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
+                    </div>
+                    <div class="col-md-9 d-flex align-items-center">
+                        <form class="search-form w-100 d-flex justify-content-center" role="search">
+                            <input class="search-input form-control rounded-pill me-2 w-100 " type="search" placeholder="What's in your mind Banta?" id="searchinput">
+                            <!-- <button class="btn btn-outline-warning">Search</button> -->
+                        </form>
+                    </div>
+                </div>
                 @yield('content')
-                <ul>
-                    <li class="text-light"><h3>{{ session('user_first_name') }}</h3></li>
-                    <li class="text-light">vvvvvvvvvvvv</li>
-                    <li class="text-light">vvvvvvvvvvvv</li>
-                    <li class="text-light">vvvvvvvvvvvv</li>
-                </ul>
             </div>
             <div class="col-md-3">
                 <aside class="p-4 aside">
-                    <ul>
-                        <li class="text-light"><h3>{{ session('user_last_name') }}</h3></li>
+                    <ul class="list-group">
+                        <li class="text-light">
+                            <h3>{{ session('user_last_name') }}</h3>
+                        </li>
                         <li class="text-light">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
                         <li class="text-light">vvvvvvvvvv</li>
