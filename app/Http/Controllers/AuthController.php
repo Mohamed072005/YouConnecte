@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -19,5 +20,26 @@ class AuthController extends Controller
         }else{
             return redirect()->route('to.login');
         }
+    }
+
+    public function index(){
+        return view('register');
+    }
+
+    public function register(Request $request){
+
+        $validated = request()->validate([
+            'name' => ['required'],
+            'password' => ['required', 'confirmed'],
+            'email' => ['required','unique:App\Models\User,email']
+        ]);
+        $object = new User;
+        $object->name = $request->name;
+        $object->email = $request->email;
+        $object->password = $request->password;
+        $object->save();
+        return redirect()->route('to.login')
+        ->with('success', 'profil registered successfully');
+
     }
 }
