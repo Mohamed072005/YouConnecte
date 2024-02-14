@@ -13,17 +13,21 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typeEmailX">Email</label>
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                </div>
+                                <form action="{{ route('login') }}" method="post">
+                                    @csrf
+                                    <div class="form-outline form-white mb-4">
+                                        <label class="form-label" for="typeEmailX">Email</label>
+                                        <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" />
+                                    </div>
 
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typePasswordX">Password</label>
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                </div>
+                                    <div class="form-outline form-white mb-4">
+                                        <label class="form-label" for="typePasswordX">Password</label>
+                                        <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" />
+                                    </div>
 
-                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+                                </form>
 
                             </div>
 

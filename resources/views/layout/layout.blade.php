@@ -43,31 +43,31 @@
             <div class="col-md-3">
                 <aside class="p-4 aside">
                     <ul>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
+                        <li class="text-light"><h3>{{ session('user_id') }}</h3></li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
                     </ul>
                 </aside>
             </div>
             <div class="col-md-6">
                 @yield('content')
                 <ul>
-                    <li>vvvvvvvvvvvv</li>
-                    <li>vvvvvvvvvvvv</li>
-                    <li>vvvvvvvvvvvv</li>
-                    <li>vvvvvvvvvvvv</li>
+                    <li class="text-light"><h3>{{ session('user_first_name') }}</h3></li>
+                    <li class="text-light">vvvvvvvvvvvv</li>
+                    <li class="text-light">vvvvvvvvvvvv</li>
+                    <li class="text-light">vvvvvvvvvvvv</li>
                 </ul>
             </div>
             <div class="col-md-3">
                 <aside class="p-4 aside">
                     <ul>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
-                        <li>vvvvvvvvvv</li>
+                        <li class="text-light"><h3>{{ session('user_last_name') }}</h3></li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
+                        <li class="text-light">vvvvvvvvvv</li>
                     </ul>
                 </aside>
             </div>
