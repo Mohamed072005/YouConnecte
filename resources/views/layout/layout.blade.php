@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        .nav-container,
+        .nav-container {
+            background-color: #747474;
+            position: fixed;
+        }
+
+
         .site-body {
             background-color: #747474;
         }
 
         .site-main {
-            background-color: #434242;
+            /* background-color: #434242; */
+            background-color: #747474;
+            height: 100vh;
         }
 
         .main-content {
@@ -22,6 +29,7 @@
 
         .aside {
             height: 100vh;
+            position: fixed;
         }
 
         aside li {
@@ -32,7 +40,7 @@
             list-style-type: none;
         }
 
-        aside li a{
+        aside li a {
             text-decoration: none;
             color: white;
         }
@@ -46,7 +54,7 @@
             border-radius: 100px;
         } */
 
-        .search-container {
+        .search-container, .posts-container {
             background-color: #747474;
         }
 
@@ -89,15 +97,56 @@
                                 </div>
                             </a>
                         </li>
-                        
-                        <li class="text-light">vvvvvvvvvv</li>
-                        <li class="text-light">vvvvvvvvvv</li>
-                        <li class="text-light">vvvvvvvvvv</li>
-                        <li class="text-ligh"><a href="{{ route('to.logout') }}" class="h5 text-light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Logout-1--Streamline-Ultimate.svg" height="28" width="28"><g id="Logout-1--Streamline-Ultimate.svg"><path d="M7 14.5a3 3 0 0 1 -2.94 -3.59A3.06 3.06 0 0 1 7.11 8.5H14a0.5 0.5 0 0 0 0.5 -0.5V1.5a1 1 0 0 0 -1 -1H1a1 1 0 0 0 -1 1v21a1 1 0 0 0 1 1h12.5a1 1 0 0 0 1 -1V15a0.5 0.5 0 0 0 -0.5 -0.5Z" fill="#ffffff" stroke-width="1"></path><path d="m23.62 10.72 -5 -4a1 1 0 0 0 -1.05 -0.12 1 1 0 0 0 -0.57 0.9V10H7a1.5 1.5 0 0 0 0 3h10v2.5a1 1 0 0 0 0.57 0.9 1 1 0 0 0 1.05 -0.12l5 -4a1 1 0 0 0 0 -1.56Z" fill="#ffffff" stroke-width="1"></path></g></svg>logout</a></li>
+
+                        <li class="text-light">
+                            <!-- Button trigger modal -->
+                            <button class="h5" style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Earth-Share--Streamline-Ultimate.svg" height="28" width="28">
+                                    <g id="Earth-Share--Streamline-Ultimate.svg">
+                                        <path d="M24 21.25a2.74 2.74 0 0 0 -4.54 -2.08 0.49 0.49 0 0 1 -0.51 0.08l-2.43 -1a0.92 0.92 0 0 0 0 -0.16 0.49 0.49 0 0 1 0.24 -0.46l2.57 -1.55a0.51 0.51 0 0 1 0.52 0 2.71 2.71 0 0 0 1.43 0.41 2.75 2.75 0 1 0 -2.75 -2.75 0.92 0.92 0 0 0 0 0.16 0.5 0.5 0 0 1 -0.24 0.46l-2.59 1.56a0.51 0.51 0 0 1 -0.52 0 2.71 2.71 0 0 0 -1.43 -0.41 2.75 2.75 0 1 0 1.79 4.83 0.49 0.49 0 0 1 0.51 -0.08l2.43 1a2.75 2.75 0 0 0 5.5 0Z" fill="#ffffff" stroke-width="1"></path>
+                                        <path d="M16.23 21.93a0.54 0.54 0 0 0 -0.43 0 4.18 4.18 0 0 1 -2.05 0.54 4.29 4.29 0 0 1 -1.89 -0.47 0.56 0.56 0 0 0 -0.21 -0.06 10 10 0 0 1 -4 -1 0.24 0.24 0 0 1 -0.14 -0.23v-1.1a2.5 2.5 0 0 1 0.89 -1.91 4.5 4.5 0 0 0 -2.9 -7.95H2.58a0.24 0.24 0 0 1 -0.19 -0.1 0.23 0.23 0 0 1 -0.05 -0.21 10 10 0 0 1 14.55 -6.16 0.25 0.25 0 0 1 0.12 0.28 0.26 0.26 0 0 1 -0.24 0.19h-2.52a2.75 2.75 0 0 0 0 5.5 2.59 2.59 0 0 1 2.22 1.26l0.47 0.77a0.49 0.49 0 0 0 0.41 0.25 0.53 0.53 0 0 0 0.43 -0.22A4.21 4.21 0 0 1 23 9.88a0.49 0.49 0 0 0 0.52 -0.06 0.51 0.51 0 0 0 0.18 -0.5A12 12 0 0 0 0 12c0 4.92 4 12 12 12a11.76 11.76 0 0 0 4.89 -1.06 0.49 0.49 0 0 0 0.28 -0.58 0.16 0.16 0 0 0 -0.06 -0.08Z" fill="#ffffff" stroke-width="1"></path>
+                                    </g>
+                                </svg>New Post
+                        </li></button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">New Post</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('share.post') }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <div class="form-floating mb-2">
+                                                <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                                <label for="floatingTextarea">Content</label>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">share</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <li class="text-ligh"><a href="{{ route('to.logout') }}" class="h5 text-light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Logout-1--Streamline-Ultimate.svg" height="28" width="28">
+                                    <g id="Logout-1--Streamline-Ultimate.svg">
+                                        <path d="M7 14.5a3 3 0 0 1 -2.94 -3.59A3.06 3.06 0 0 1 7.11 8.5H14a0.5 0.5 0 0 0 0.5 -0.5V1.5a1 1 0 0 0 -1 -1H1a1 1 0 0 0 -1 1v21a1 1 0 0 0 1 1h12.5a1 1 0 0 0 1 -1V15a0.5 0.5 0 0 0 -0.5 -0.5Z" fill="#ffffff" stroke-width="1"></path>
+                                        <path d="m23.62 10.72 -5 -4a1 1 0 0 0 -1.05 -0.12 1 1 0 0 0 -0.57 0.9V10H7a1.5 1.5 0 0 0 0 3h10v2.5a1 1 0 0 0 0.57 0.9 1 1 0 0 0 1.05 -0.12l5 -4a1 1 0 0 0 0 -1.56Z" fill="#ffffff" stroke-width="1"></path>
+                                    </g>
+                                </svg>logout</a></li>
                     </ul>
                 </aside>
             </div>
-            <div class="container col-md-6">
+            <div class="container d-flex flex-column align-items-center col-md-6">
                 <div class="search-container d-flex justify-content-center mt-3 w-75 row rounded">
                     <div class="col-md-3 d-flex align-items-center justify-content-center p-2">
                         <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
@@ -128,7 +177,15 @@
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
 
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+    </script>
 </body>
 
 </html>
