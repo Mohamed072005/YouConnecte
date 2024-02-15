@@ -20,13 +20,19 @@ Route::get('/', function () {
 })->name('to.login');
 Route::post('/user/login', [AuthController::class, 'login'])->name('login');
 
-
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/register', [AuthController::class, 'index'])->name('register');
 
 Route::get('logout', [AuthController::class, 'logout'])->name('to.logout');
 
 
+
 Route::post('/share/post', [PostController::class, 'store'])->name('share.post');
 
 Route::get('/home', [PostController::class, 'getPosts'])->name('home');
+
+Route::delete('/delete/post/{id}', [PostController::class, 'destroy'])->name('delete.post');
+
+Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post');
+
+Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
