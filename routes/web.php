@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,6 @@ Route::get('/register', [AuthController::class, 'index'])->name('register');
 Route::get('logout', [AuthController::class, 'logout'])->name('to.logout');
 
 
+Route::post('/share/post', [PostController::class, 'store'])->name('share.post');
+
+Route::get('/home', [PostController::class, 'getPosts'])->name('home');
