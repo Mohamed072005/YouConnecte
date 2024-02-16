@@ -30,3 +30,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('to.logout');
 Route::post('/share/post', [PostController::class, 'store'])->name('share.post');
 
 Route::get('/home', [PostController::class, 'getPosts'])->name('home');
+
+Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
+
+
+

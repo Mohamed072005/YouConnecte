@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+
 class PostController extends Controller
 {
     public function store(Request $request)
@@ -32,5 +33,11 @@ class PostController extends Controller
         $posts = Post::join('users', 'user_id', '=', 'users.id')
                         ->get(['name', 'content']);
         return view('home', compact('posts'));
+    }
+
+    public function getUserPosts(){
+        $myposts= Post::all();
+        return view('profil', compact('myposts'));
+        
     }
 }
