@@ -43,8 +43,7 @@
                                     <button type="submit" style="background-color: transparent; border: none;">Update</button>
                                 </form>
                                 @else
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">action</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -63,7 +62,16 @@
                     <img src="{{asset('storage/'.$postInfo->image)}}" class="img-fluid" alt="">
                 </div>
             </div>
-            <div class="footer posts-container border border-dark rounded">
+            <div class="footer posts-container rounded row mt-1 border border-dark">
+                <div class="col-4 d-flex justify-content-center p-2">
+                    <div class="bg-secondary w-75 rounded-pill text-center text-light">like</div>
+                </div>
+                <div class="col-4 d-flex justify-content-center p-2">
+                    <div class="bg-secondary w-75 rounded-pill text-center"><a href="" class="navbar-brand text-light">commente</a></div>
+                </div>
+                <div class="col-4 d-flex justify-content-center p-2">
+                    <div class="bg-secondary w-75 rounded-pill text-center text-light">share</div>
+                </div>
             </div>
         </div>
     </div>
