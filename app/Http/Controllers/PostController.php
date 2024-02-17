@@ -30,7 +30,9 @@ class PostController extends Controller
             'image' => $imagePath,
             'user_id' => session('user_id'),
         ]);
+
         return redirect()->route('home');
+        // return response()->json('add success');
     }
 
     public function getPosts()
@@ -38,7 +40,9 @@ class PostController extends Controller
 
         $posts = Post::join('users', 'user_id', '=', 'users.id')
             ->get(['name', 'content', 'image', 'users.id as user_id', 'posts.id']);
+
         return view('home', compact('posts'));
+        // return response()->json($posts);
         
     }
 
