@@ -1,24 +1,16 @@
 @extends('layout.layout')
+@section('title', 'post comments')
 @section('content')
-<div class="search-container d-flex justify-content-center w-75 row rounded mt-3">
-    <div class="col-md-3 d-flex align-items-center justify-content-center p-2">
-        <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
-    </div>
-    <div class="col-md-9 d-flex align-items-center">
-        <form class="search-form w-100 d-flex justify-content-center" role="search">
-            <input class="search-input form-control rounded-pill me-2 w-100 " type="search" placeholder="What's in your mind {{ session('user_name') }}?" id="searchinput">
-            <!-- <button class="btn btn-outline-warning">Search</button> -->
-        </form>
-    </div>
-</div>
-<div class="row d-flex justify-content-center mt-1 w-100">
-@foreach($posts as $postInfo)
+<div class="row d-flex justify-content-center mt-3 w-100">
     <div class="col-lg-9">
         <div class="mb-4 posts-container rounded">
+        @foreach($posts as $postInfo)
             <div class="row posts-container border border-dark rounded">
                 <div class="col-md-12 mb-3 d-flex justify-content-between">
                     <div class="text-light ml-3">
-                        {{ $postInfo->name}}
+                         
+                            {{ $postInfo->name }} 
+                        
                         <div class=" text-light small">3 days ago</div>
                     </div>
                     <div class="mr-1">
@@ -29,17 +21,15 @@
                                     <path fill="#ffffff" fill-rule="evenodd" d="M2.022 18.667A12 12 0 1 1 21.977 5.333 12 12 0 0 1 2.022 18.667Zm18.293 -1.111A10 10 0 1 0 3.685 6.444a10 10 0 0 0 16.63 11.112ZM12 10a2 2 0 1 1 0 4 2 2 0 0 1 0 -4Zm2 -3.5a2 2 0 1 0 -4 0 2 2 0 0 0 4 0Zm-2 9a2 2 0 1 1 0 4 2 2 0 0 1 0 -4Z" clip-rule="evenodd" stroke-width="1"></path>
                                 </svg> -->
                             </button>
-
+                           
                             <ul class="dropdown-menu">
-                                @if(session('user_id') == $postInfo->user_id)
-                                <form action="{{ route('delete.post', $postInfo->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
+                            @if( session('user_id') == $postInfo->user_id )
+                                <form action="" method="post">
+
                                     <button type="submit" style="background-color: transparent; border: none;">Delete</button>
                                 </form>
-                                <form action="{{ route('edit.post', $postInfo->id) }}" method="get">
-                                    @csrf
-                                    @method('Edit')
+                                <form action="" method="get">
+
                                     <button type="submit" style="background-color: transparent; border: none;">Update</button>
                                 </form>
                                 @else
@@ -53,7 +43,7 @@
                 <div class="col-md-12 d-flex justify-content-start mt-2">
                     <div class="w-100">
                         <p class="text-light">
-                            {{ $postInfo->content}}
+                            {{ $postInfo->content }}
                         </p>
                     </div>
 
@@ -72,10 +62,39 @@
                 <div class="col-4 d-flex justify-content-center p-2">
                     <div class="bg-secondary w-75 rounded-pill text-center text-light">share</div>
                 </div>
+                <div class="row d-flex justify-content-center mt-3 w-100">
+                    <div class="col-lg-9">
+                        <div class="mb-4 posts-container rounded">
+                            @forelse( $comments as $commentsInfo)
+                            <div class="mb-2">
+                                <div>
+                                    <h4 class="text-light">{{ $commentsInfo->user_name }}</h4>
+                                </div>
+                                <div class="border border-dark bg-secondary bg-gradient rounded mb-3 p-1">
+                                    <p class="text-light">{{ $commentsInfo->content }}</p>
+                                     
+                                </div>
+                            </div>
+                            @empty
+                            <p class="text-light">No comments yet.</p>
+                            @endforelse
+
+                            <form action="{{ route('store.comment') }}" method="post" class="row">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $commentsInfo->user_id }}">
+                                <div class="col-md-8 form-groub">
+                                    <input class="form-control" id="comment" name="content" placeholder="Add your comment">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary">Share</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
-    @endforeach
 </div>
-
 @endsection
