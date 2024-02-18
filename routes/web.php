@@ -39,4 +39,6 @@ Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post'
 Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
 
 
-Route::get('/comments', [CommentController::class, 'getComments'])->name('get.comments');
+Route::get('/comments/{id}', [CommentController::class, 'getComments'])->name('get.comments');
+
+Route::post('/create/comments', [CommentController::class, 'store'])->name('store.comment');
