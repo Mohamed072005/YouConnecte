@@ -46,7 +46,7 @@ class AuthController extends Controller
         return redirect()->route('to.login')
         ->with('success', 'profil registered successfully');
 
-        
+
 
     }
 

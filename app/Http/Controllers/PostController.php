@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+
 class PostController extends Controller
 {
     public function store(Request $request)
@@ -79,5 +80,13 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('home');
+    }
+
+
+
+    public function getUserPosts(){
+        $myposts= Post::all();
+        return view('profil', compact('myposts'));
+        
     }
 }
