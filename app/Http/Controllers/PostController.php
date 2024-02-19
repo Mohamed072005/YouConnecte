@@ -35,6 +35,8 @@ class PostController extends Controller
         return view('home', compact('posts'));
     }
 
+
+
     public function getUserPosts(){
         $myposts= Post::all();
         return view('profil', compact('myposts'));
