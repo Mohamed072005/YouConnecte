@@ -52,7 +52,7 @@
                     </p>
                 </div>
                 <div class="col-md-12 d-flex justify-content-center mb-1">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
+                    <img src="{{asset('storage/'.$mine->image)}}" class="img-fluid" alt="">
                 </div>
             </div>
             <div class="footer posts-container border border-dark rounded">

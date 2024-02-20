@@ -64,7 +64,7 @@
             </div>
             <div class="footer posts-container rounded row mt-1 border border-dark">
                 <div class="col-4 d-flex justify-content-center p-2">
-                    <div class="bg-secondary w-75 rounded-pill text-center text-light">like</div>
+                    <div id="like" class="bg-secondary w-75 rounded-pill text-center"><a href="" class="navbar-brand text-light">like</a></div>
                 </div>
                 <div class="col-4 d-flex justify-content-center p-2">
                     <div class="bg-secondary w-75 rounded-pill text-center"><a href="{{ route('get.comments', $postInfo->id) }}" class="navbar-brand text-light">commente</a></div>
