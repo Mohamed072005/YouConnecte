@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,14 @@ Route::post('/share/post', [PostController::class, 'store'])->name('share.post')
 
 Route::get('/home', [PostController::class, 'getPosts'])->name('home');
 
+
+Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
+
+// Route::get('/profil/search', [PostController::class, 'search'])->name('search');
+
+
+Route::put('/profil/update/{id}', [PostController::class, 'updateinfo'])->name('profil.update');
+
 Route::delete('/delete/post/{id}', [PostController::class, 'destroy'])->name('delete.post');
 Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post');
 Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
@@ -42,6 +51,5 @@ Route::post('/create/comments', [CommentController::class, 'store'])->name('stor
 
 
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
-
 
 
