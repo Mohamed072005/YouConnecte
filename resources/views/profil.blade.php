@@ -102,7 +102,7 @@
                     </p>
                 </div>
                 <div class="col-md-12 d-flex justify-content-center mb-1">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
+                    <img src="{{asset('storage/'.$mine->image)}}" class="img-fluid" alt="">
                 </div>
                 <div class="d-flex gap-5">
                     <button class="btn btn-secondary ms-4 my-3">Likes <i class="fa-regular fa-thumbs-up"></i></button>

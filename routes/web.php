@@ -42,13 +42,19 @@ Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
 Route::put('/profil/update/{id}', [PostController::class, 'updateinfo'])->name('profil.update');
 
 Route::delete('/delete/post/{id}', [PostController::class, 'destroy'])->name('delete.post');
-
 Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post');
-
 Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
 
 
 Route::get('/comments/{id}', [CommentController::class, 'getComments'])->name('get.comments');
-
 Route::post('/create/comments', [CommentController::class, 'store'])->name('store.comment');
+<<<<<<< HEAD
 
+=======
+
+
+Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
+
+
+
+>>>>>>> 0dbda5d710a6b020510b2a85a9f296b1007ff5ff
