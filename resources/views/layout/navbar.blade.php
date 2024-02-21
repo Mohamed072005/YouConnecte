@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <a class="navbar-brand text-light fw-bold">YouConnecte</a>
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control me-2" type="search" id="myInput" name="search"placeholder="Search by user name" aria-label="Search">
       <button class="btn btn-outline-light" type="submit">Search</button>
     </form>
   </div>

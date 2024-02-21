@@ -7,7 +7,7 @@
     <title>@yield('title', 'login')</title>
     <style>
         body {
-            background-color: #747474;
+            background-color: rgb(255, 255, 255);
         }
     </style>
 </head>
