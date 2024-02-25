@@ -79,10 +79,9 @@
 
         </div>
 
-
-
-
     </section>
+
+
     <section class=" w-50">
         @foreach($mypostsinfo as $mine)
     <div class="row d-flex justify-content-center mt-1 w-100  rounded">
@@ -94,6 +93,14 @@
                         {{session('user_name')}}
                         <div class=" text-secondary small ">5days agao</div>
                     </div>
+
+                    
+
+                    
+
+
+
+
                 </div>
 
                 <div class="col-md-12 d-flex justify-content-start mt-2">
@@ -108,8 +115,6 @@
                     <button class="btn btn-secondary ms-4 my-3"> 200 Likes <i class="fa-regular fa-thumbs-up"></i></button>
                     <button class="btn btn-secondary my-3">Comments <i class="fa-regular fa-comment"></i></button>
                     <button class="btn btn-secondary my-3">share <i class="fa-solid fa-share"></i></button>
-
-
                 </div>
             </div>
             <div class="footer posts-container border border-dark rounded">
@@ -120,8 +125,8 @@
    
 </div>
 @endforeach
-
 </section>
+
     <section class="bg-secondary w-25 h-100">
     <h3 class="border-bottom text-light text-center">Friends suggestions</h3>
     @foreach($users as $user)
