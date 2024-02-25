@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,4 +45,4 @@ Route::post('/create/comments', [CommentController::class, 'store'])->name('stor
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
 
 
-
+Route::post('/like/{id}', [LikeController::class, 'store'])->name('like.action');
