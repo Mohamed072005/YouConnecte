@@ -1,4 +1,4 @@
-@extends('layout.navbar')
+@extends('layout.layout')
 @section('content')
 <!-- <div class="search-container d-flex justify-content-center w-75 row rounded mt-3">
     <div class="col-md-3 d-flex align-items-center justify-content-center p-2">
@@ -18,7 +18,7 @@
             <div class="row posts-container rounded" style="background-color: #efefef;border: 0.3px solid gray">
                 <div class="col-md-12 mb-3 d-flex justify-content-between">
                     <div class="ml-3">
-                        {{ $postInfo->name}}
+                        {{ $postInfo->name }}
                         <div class="small">3 days ago</div>
                     </div>
                     <div class="mr-1">
@@ -53,7 +53,7 @@
                 <div class="col-md-12 d-flex justify-content-start mt-2">
                     <div class="w-100">
                         <p class="text-dark">
-                            {{ $postInfo->content}}
+                            {{ $postInfo->content }}
                         </p>
                     </div>
 
