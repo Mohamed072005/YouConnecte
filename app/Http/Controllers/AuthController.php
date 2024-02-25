@@ -20,7 +20,7 @@ class AuthController extends Controller
             session()->put('user_name', $user->name);
             return redirect()->route('home');
         }else{
-            return redirect()->route('to.login');
+            return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
         }
     }
 

@@ -1,5 +1,6 @@
 @extends('authLayout.layout')
 @section('content')
+{{ session('user_id') }}
 <main>
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
@@ -43,4 +44,16 @@
         </div>
     </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(session('loginError'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "{{ session('loginError') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
 @endsection
