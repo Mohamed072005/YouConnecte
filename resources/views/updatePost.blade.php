@@ -3,9 +3,9 @@
 @section('content')
 <div class="container mt-5 d-flex flex-column align-items-center pb-5">
     <div>
-        <h3 class="text-light">Update Post</h3>
+        <h3 class="">Update Post</h3>
     </div> 
-    <form action="{{ route('update.post', $editPost->id ) }}" enctype="multipart/form-data" method="post" class="w-50 d-flex flex-column align-items-center mt-3 rounded shadow" style="background-color: #434242;">
+    <form action="{{ route('update.post', $editPost->id ) }}" enctype="multipart/form-data" method="post" class="w-50 d-flex flex-column align-items-center mt-3 rounded shadow" style="background-color: #efefef;">
         @csrf
         @method('PUT')
         <div>
