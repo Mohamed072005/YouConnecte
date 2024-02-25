@@ -1,6 +1,5 @@
 @extends('authLayout.layout')
 @section('content')
-{{ session('user_id') }}
 <main>
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
