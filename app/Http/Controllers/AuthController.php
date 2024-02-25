@@ -36,8 +36,8 @@ class AuthController extends Controller
             'email' => ['required','unique:App\Models\User,email']
         ]);
 
+
         $object = new User;
-        
         $object->name = $request->name;
         $object->email = $request->email;
         $object->password = Hash::make($request->password);

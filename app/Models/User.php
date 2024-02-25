@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'address',
         'phone',
+        'image',
         'email_verified_at'
     ];
 
@@ -48,5 +49,19 @@ class User extends Authenticatable
     public function post(){
         return $this->hasMay(Post::class);
     }
+
+    // app/User.php
+
+/**
+ * A user can have many messages
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function messages()
+{
+  return $this->hasMany(Message::class);
+}
+
+
 
 }

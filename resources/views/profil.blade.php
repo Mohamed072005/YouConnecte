@@ -11,7 +11,7 @@
     <section class="ms-3 w-25 h-100">
         <div class="w-100   d-flex justify-content-evenly">
             <div class="w-25">
-                <img  class="figure-img img-fluid rounded-circle w-50 "src="{{URL('assets/person1.jpg')}}" alt="">
+                <img  class="figure-img img-fluid rounded-circle w-50 " src="{{URL('assets/person1.jpg')}}" alt="">
             </div>
             <div class="w-75">
                 <p class="fw-bold fs-5 text-dark">Welecome to you profil</p>
@@ -105,7 +105,7 @@
                     <img src="{{asset('storage/'.$mine->image)}}" class="img-fluid" alt="">
                 </div>
                 <div class="d-flex gap-5">
-                    <button class="btn btn-secondary ms-4 my-3">Likes <i class="fa-regular fa-thumbs-up"></i></button>
+                    <button class="btn btn-secondary ms-4 my-3"> 200 Likes <i class="fa-regular fa-thumbs-up"></i></button>
                     <button class="btn btn-secondary my-3">Comments <i class="fa-regular fa-comment"></i></button>
                     <button class="btn btn-secondary my-3">share <i class="fa-solid fa-share"></i></button>
 

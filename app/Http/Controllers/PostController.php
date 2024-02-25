@@ -108,26 +108,18 @@ class PostController extends Controller
         $object->address = $request->input('address');
         $object->phone = $request->input('phone');
         // dd($object);
-
         $object->save();        
-
         return redirect()->route('profil')
         ->with('success', 'data has been updated successfully');
 
     }
 
-    // public function search(Request $request){
-    //     $results = User::where('name', 'LIKE', '%{$request->search}%')->get();
-    //     dd($results);
-    //         return view('profil', compact('results'))->with(
-    //         ['search' => $request->search])->render();
-
-    // }
-    // public function show(Request $request)
-    // {
-    //     $post = User::findOrFail($request->id);
-    //     return view('user.post', compact('post'))->render();
-    // }
+    public function search(){
+        $search_user= $_GET['search'];
+        $results = User::where('name', 'LIKE','%'.$search_user.'%')->get();
+        return view('search', compact('results'));
+    }
+    
 
 }
 
