@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['content','image', 'user_id'];
+    protected $fillable = ['content', 'image', 'user_id'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
-
-
