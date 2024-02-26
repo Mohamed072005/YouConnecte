@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .nav-container {
             /* background-color: skyblue; */
@@ -19,8 +20,6 @@
         }
 
         .site-main {
-            /* background-color: #434242; */
-            margin-top: 50px;
             background-color: white;
             height: 100vh;
         }
@@ -61,6 +60,7 @@
         .posts-container {
             background-color: #efefef;
         }
+
         /* aside li:hover a {
             color: #747474;
         } */
@@ -68,20 +68,37 @@
 </head>
 
 <body class="site-body">
-    <header class="p-2 container-fluid nav-container bg-primary">
-        <div class="container d-flex justify-content-between align-items-center ">
-            <div class="">
-                <a href="" class="navbar-brand">
-                    <h2 class="text-light">YouConnecte</h2>
-                </a>
-            </div>
-            <div class="">
-                <a href="" class="navbar-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="28" width="28">
-                        <path d="M12 0.83C5.38 0.83 0 5.75 0 11.8a10.28 10.28 0 0 0 2.49 6.7 0.29 0.29 0 0 1 0.07 0.18v2.72a1.76 1.76 0 0 0 0.84 1.51 1.72 1.72 0 0 0 0.93 0.26 1.82 1.82 0 0 0 0.79 -0.17l2.07 -1a0.28 0.28 0 0 1 0.22 0 12.87 12.87 0 0 0 4.59 0.84c6.62 0 12 -4.92 12 -11S18.62 0.83 12 0.83Zm6 8.42 -3.46 5.54a1 1 0 0 1 -1.38 0.32l-2.63 -1.65a1 1 0 0 0 -1 0l-2.91 1.71A0.53 0.53 0 0 1 6 15.1a0.5 0.5 0 0 1 -0.08 -0.61L9 9.05a1 1 0 0 1 0.62 -0.48 1 1 0 0 1 0.78 0.12l2.6 1.64a1 1 0 0 0 1 0l3.32 -1.81a0.49 0.49 0 0 1 0.6 0.1 0.48 0.48 0 0 1 0.08 0.63Z" fill="#ffffff" stroke-width="1"></path>
-                    </svg></a>
+    <nav class="navbar bg-primary">
+        <div class="container-fluid">
+            <a href="{{ route('home') }}" class="navbar-brand text-light"><h2>YouConnecte</h2></a>
+            <form class="d-flex" role="search" action="{{url ('/search')}}" type="get">
+                <input class="form-control me-2" type="search" id="myInput" name="search" placeholder="Search by user name" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <div class="d-flex">
+                <div class="dropdown me-4">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        More actions
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" type="button">Home page</button></li>
+                        <li><button class="dropdown-item" type="button">Messages</button></li>
+                        <li><a class="dropdown-item" type="button" href="{{route('logout')}}">Log out</a></li>
+
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Notifaction
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" type="button">notifaction</button></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
-    </header>
+    </nav>
     <main class="site-main">
         <div class="row main-content">
             <div class="col-md-3">
@@ -148,7 +165,7 @@
                                 </svg> Home</a>
                         </li>
 
-                        <li class="text-ligh"><a href="{{ route('logout') }}" class="h5 text-light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Logout-1--Streamline-Ultimate.svg" height="28" width="28">
+                        <li class=""><a href="{{ route('logout') }}" class="h5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Logout-1--Streamline-Ultimate.svg" height="28" width="28">
                                     <g id="Logout-1--Streamline-Ultimate.svg">
                                         <path d="M7 14.5a3 3 0 0 1 -2.94 -3.59A3.06 3.06 0 0 1 7.11 8.5H14a0.5 0.5 0 0 0 0.5 -0.5V1.5a1 1 0 0 0 -1 -1H1a1 1 0 0 0 -1 1v21a1 1 0 0 0 1 1h12.5a1 1 0 0 0 1 -1V15a0.5 0.5 0 0 0 -0.5 -0.5Z" fill="#000000" stroke-width="1"></path>
                                         <path d="m23.62 10.72 -5 -4a1 1 0 0 0 -1.05 -0.12 1 1 0 0 0 -0.57 0.9V10H7a1.5 1.5 0 0 0 0 3h10v2.5a1 1 0 0 0 0.57 0.9 1 1 0 0 0 1.05 -0.12l5 -4a1 1 0 0 0 0 -1.56Z" fill="#000000" stroke-width="1"></path>
