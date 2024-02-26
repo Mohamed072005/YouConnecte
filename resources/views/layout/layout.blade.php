@@ -93,8 +93,8 @@
                                     <div class="col-4 d-flex align-items-center justify-content-start p-2">
                                         <img src="{{ asset('storage/image.png') }}" style="width: 70px; height: 70px;" class="rounded-circle img-fluid" alt="user_img">
                                     </div>
-                                    <div class="col-8 d-flex align-items-center">
-                                        <h3>{{ session('user_name') }}</h3>
+                                    <div class="col-8 d-flex align-items-center ">
+                                        <h3><a href="{{route('profil')}}"> {{ session('user_name') }}</a></h3>
                                     </div>
                                 </div>
                             </a>

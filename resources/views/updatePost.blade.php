@@ -1,15 +1,15 @@
 @extends('layout.layout')
 @section('title', 'update post info')
 @section('content')
-<div class="container mt-5 d-flex flex-column align-items-center pb-5">
+<div class="container mt-5 d-flex flex-column align-items-center pb-5 bg-dark rounded">
     <div>
-        <h3 class="text-light">Update Post</h3>
+        <h3 class="text-light">Update Your Post</h3>
     </div> 
-    <form action="{{ route('update.post', $editPost->id ) }}" enctype="multipart/form-data" method="post" class="w-50 d-flex flex-column align-items-center mt-3 rounded shadow" style="background-color: #434242;">
+    <form action="{{ route('update.post', $editPost->id)}}" enctype="multipart/form-data" method="post" class="w-50 d-flex flex-column align-items-center mt-3 rounded shadow bg-primary w-75" style="background-color: #434242;">
         @csrf
         @method('PUT')
         <div>
-            <input type="hidden" value="{{ $editPost->content }}" id="hiddenValue">
+            <input type="hidden" value="{{$editPost->content}}" id="hiddenValue">
         </div>
         <div class="form-floating mt-3">
             <textarea name="content" class="form-control" id="areaContainer" placeholder="content" cols="37" rows="3"></textarea>
@@ -19,10 +19,15 @@
             <input type="file" name="image_cover" class="form-control" placeholder="image">
         </div>
         <div class="mt-4 mb-4">
-            <button type="submit" class="btn btn-outline-primary">Done</button>
+            <button type="submit" class="btn btn-outline-dark">Done</button>
         </div>
     </form>
 </div>
+
+
+
+
+
 <script>
     let hiddenValue = document.getElementById('hiddenValue').value;
     let areaContainer = document.getElementById('areaContainer');

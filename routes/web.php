@@ -5,7 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use APP\Http\Controllers\PusherController;
-use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\chatController;
 
 
 
@@ -33,10 +33,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/register', [AuthController::class, 'index'])->name('register');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
-
 Route::post('/share/post', [PostController::class, 'store'])->name('share.post');
 
 Route::get('/home', [PostController::class, 'getPosts'])->name('home');
@@ -53,30 +49,12 @@ Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post'
 Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
 
 
+
+
 Route::get('/comments/{id}', [CommentController::class, 'getComments'])->name('get.comments');
 Route::post('/create/comments', [CommentController::class, 'store'])->name('store.comment');
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
 
-
-Route::get('/chat', [ChatsController::class, 'index']);
-
-Route::get('messages', 'ChatsController@fetchMessages');
-Route::post('messages', 'ChatsController@sendMessage');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
-
-
 Route::post('/like/{id}', [LikeController::class, 'store'])->name('like.action');
+
+

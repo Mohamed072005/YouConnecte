@@ -20,8 +20,8 @@
           More actions
         </button>
         <ul class="dropdown-menu">
-          <li><button class="dropdown-item" type="button">Home page</button></li>
-          <li><button class="dropdown-item" type="button">Messages</button></li>
+          <li><a class="dropdown-item" type="button" href="{{route('home')}}">Home page</a></li>
+          <li><a class="dropdown-item" type="button" href="chatify">Messages</a></li>
           <li><a class="dropdown-item" type="button" href="{{route('logout')}}">Log out</a></li>          
          
       </ul>

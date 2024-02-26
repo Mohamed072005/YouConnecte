@@ -90,53 +90,26 @@
             <div class="row posts-container border border-dark rounded ">
                 <div class="col-md-12 mb-3 d-flex justify-content-between ">
                     <div class="text-dark ml-3 fw-bold">
-                        {{session('user_name')}}
+                        {{$mine->name}}
                         <div class=" text-secondary small ">5days agao</div>
                     </div>
                     <div>
 
                     <div class="dropdown">
                         <a class="btn  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        
                         </a>
-
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                            <li><a class="dropdown-item" href="#">Update</a></li>
-                            <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Launch demo modal
-                                </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-
+                            <form action="{{route('delete.post', $mine->postid)}}" method="post">
+                                @csrf
+                                @method('DELETE')                            
+                                <li><button class="dropdown-item" href="{{route('delete.post', $mine->postid)}}">Delete</button></li>
+                            </form>
+                            <li><a class="dropdown-item" href="{{route('edit.post', $mine->postid)}}">Update</a></li>
 
                         </ul>
                         </div>
                     </div>
-                
-
-                    
-
-
-
 
                 </div>
 
@@ -162,6 +135,7 @@
    
 </div>
 @endforeach
+
 </section>
 
     <section class="bg-secondary w-25 h-100">

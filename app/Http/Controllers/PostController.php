@@ -63,7 +63,7 @@ class PostController extends Controller
     {
         $deletedPost = Post::find($id);
         $deletedPost->delete();
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -84,7 +84,6 @@ class PostController extends Controller
             $imagePath = $request->file('image_cover')->store('uploads', 'public');
         }
 
-
         $updatePost = Post::find($id);
 
         $updatePost->update([
@@ -92,28 +91,31 @@ class PostController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('profil');
     }
 
 
 
-    public function getUserPosts(){
+
+    //this function brings all the post of the user + the random users as suggestions +info of the user
+    public function getUserPosts()
+    {
         $session = session('user_id');
-        // $myposts= Post:: where('user_id', $session)->get();
         $mypostsinfo = Db::table('users')
         ->join('posts', 'posts.user_id', '=', 'users.id')
-        ->select('posts.*', 'users.name','users.email', 'users.address', 'users.phone', 'users.id')->get();
+        ->select('posts.content','posts.image','posts.id as postid','users.name','users.email', 'users.address', 'users.phone', 'users.id')->get();
+        // dd($mypostsinfo);
 
         $users = DB::table('users')
-        ->limit(15) // Number of records to retrieve
+        ->limit(15)
         ->inRandomOrder()
         ->get();
         return view('profil', compact('mypostsinfo','users')); 
     }
 
-    public function updateinfo(Request $request, $id){
 
-
+    public function updateinfo(Request $request, $id)
+    {
         $object = User::find($id);
         $object->name = $request->input('name');
         $object->email = $request->input('email');
@@ -121,16 +123,35 @@ class PostController extends Controller
         $object->phone = $request->input('phone');
         // dd($object);
         $object->save();        
-        return redirect()->route('profil')
-        ->with('success', 'data has been updated successfully');
-
+        return redirect()->route('profil');
     }
 
-    public function search(){
-        $search_user= $_GET['search'];
-        $results = User::where('name', 'LIKE','%'.$search_user.'%')->get();
-        return view('search', compact('results'));
+
+    public function updatepost(Request $request, $id){
+        $objectpost = Post::find($id);
+
+        if ($request->hasFile('image_cover')) {
+            $imagePath = $request->file('image_cover')->store('uploads', 'public');
+        }
+
+        $objectpost->content= $request->input('content');
+        $objectpost->image = $request->input('image_cover');
+        $objectpost->save();
+        return redirect()->route('profil');
+    
     }
+
+
+  
+
+
+
+        //this function is used for seraching
+        public function search(){
+            $search_user= $_GET['search'];
+            $results = User::where('name', 'LIKE','%'.$search_user.'%')->get();
+            return view('search', compact('results'));
+        }
     
 
   

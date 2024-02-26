@@ -1,3 +1,4 @@
+@extends('authLayout.layout')
 @extends('layout.layout')
 @section('content')
 <!-- <div class="search-container d-flex justify-content-center w-75 row rounded mt-3">
