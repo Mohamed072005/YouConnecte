@@ -100,17 +100,23 @@ class PostController extends Controller
     //this function brings all the post of the user + the random users as suggestions +info of the user
     public function getUserPosts()
     {
-        $session = session('user_id');
-        $mypostsinfo = Db::table('users')
-        ->join('posts', 'posts.user_id', '=', 'users.id')
-        ->select('posts.content','posts.image','posts.id as postid','users.name','users.email', 'users.address', 'users.phone', 'users.id')->get();
+        $userid = session('user_id');
+        $mypostsinfo = Db::table('posts')
+        ->where('posts.user_id',$userid)
+        ->join('users', 'posts.user_id', '=', 'users.id')
+        ->select('posts.content','posts.image','posts.id as postid','users.name','users.email', 'users.address', 'users.phone', 'users.id as hisid')->get();
+
         // dd($mypostsinfo);
+        $userinfo= DB::table('users')
+        ->where('id', $userid)->first();
+        // dd($userinfo);
+
 
         $users = DB::table('users')
         ->limit(15)
         ->inRandomOrder()
         ->get();
-        return view('profil', compact('mypostsinfo','users')); 
+        return view('profil', compact('mypostsinfo','users','userinfo')); 
     }
 
 
@@ -164,9 +170,12 @@ class PostController extends Controller
 
     }
 
-  
-
-
+    public function deleteAccount(){
+        $userid = session('user_id');
+        $user = User::find($userid);
+        $user->delete();
+        return redirect()->route('to.login');
+    }
 
         //this function is used for seraching
         public function search(){

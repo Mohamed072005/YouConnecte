@@ -39,6 +39,8 @@ Route::get('/home', [PostController::class, 'getPosts'])->name('home');
 
 
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
+Route::delete('/profil/delete', [PostController::class, 'deleteAccount'])->name('deleteAccount');
+
 
 
 

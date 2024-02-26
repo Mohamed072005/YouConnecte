@@ -51,13 +51,13 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout( Request $request)
     {
 
         // dd(session('user_name'));
-
-        Session::flush();
+        $request->session()->flush();
         Auth::logout();
         return redirect()->route('to.login');
+
     }
 }
