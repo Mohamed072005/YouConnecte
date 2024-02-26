@@ -175,7 +175,7 @@
                     </ul>
                 </aside>
             </div>
-            <div class="container d-flex flex-column align-items-center col-md-6 bg-primary">
+            <div class="container d-flex flex-column align-items-center col-md-6">
 
                 @yield('content')
             </div>

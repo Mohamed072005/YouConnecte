@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             @empty
-                            <p class="text-light">No comments yet.</p>
+                            <p class="">No comments yet.</p>
                             @endforelse
                             <form action="{{ route('store.comment') }}" method="post" class="row">
                                 @csrf
