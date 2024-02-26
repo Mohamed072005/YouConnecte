@@ -47,6 +47,9 @@ Route::put('/profil/update/{id}', [PostController::class, 'updateinfo'])->name('
 Route::delete('/delete/post/{id}', [PostController::class, 'destroy'])->name('delete.post');
 Route::get('/edit/info/{id}', [PostController::class, 'edit'])->name('edit.post');
 Route::put('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
+Route::post('/addpost', [PostController::class, 'addNewPost'])->name('add.post');
+Route::get('/addpost', [PostController::class, 'addPostView'])->name('addpost');
+
 
 
 
@@ -56,5 +59,6 @@ Route::post('/create/comments', [CommentController::class, 'store'])->name('stor
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
 
 Route::post('/like/{id}', [LikeController::class, 'store'])->name('like.action');
+
 
 

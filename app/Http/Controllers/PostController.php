@@ -58,7 +58,7 @@ class PostController extends Controller
         
 
     }
-
+    //delete method working both in home and profil
     public function destroy($id)
     {
         $deletedPost = Post::find($id);
@@ -126,7 +126,7 @@ class PostController extends Controller
         return redirect()->route('profil');
     }
 
-
+//update post in profil
     public function updatepost(Request $request, $id){
         $objectpost = Post::find($id);
 
@@ -141,6 +141,28 @@ class PostController extends Controller
     
     }
 
+    public function addPostView()
+    {
+        return view('AddPost');
+
+    }
+
+    public function addNewPost(Request $request)
+    {
+        $object= new Post;
+        $object->content = $request->content;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+        }
+        // $imagePath= $request>file('image')->store('uploads', 'public');
+        $object->image = $imagePath;
+        $object->user_id = session('user_id');
+        // dd($object->image);
+        $object->save();
+        return redirect()->route('profil');
+
+    }
 
   
 

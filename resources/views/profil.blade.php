@@ -83,6 +83,9 @@
 
 
     <section class=" w-50">
+    <div class="d-flex justify-content-center">
+    <a href="{{route('addpost')}}" class="btn btn-primary ms-3 w-50">What's going in your mind? </a>
+    </div>
         @foreach($mypostsinfo as $mine)
     <div class="row d-flex justify-content-center mt-1 w-100  rounded">
     <div class="col-lg-9">
