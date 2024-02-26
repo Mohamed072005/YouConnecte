@@ -102,7 +102,7 @@
     <main class="site-main">
         <div class="row main-content">
             <div class="col-md-3">
-                <aside class="p-4 aside">
+                <aside class="p-4 aside h-100">
                     <ul class="list-group">
                         <li class="text-light">
                             <a href="">
