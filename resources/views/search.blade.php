@@ -11,7 +11,7 @@
     <h5 class="card-title">{{$result->address}}</h5>
     <p class="card-text">Let's connect </p>
     <a href="#" class="btn btn-primary">Follow</a>
-    <a href="#" class="btn btn-primary">Send a message</a>
+    <a href="{{url('chatify')}}" class="btn btn-primary">Send a message</a>
   </div>
 </div>
 @endforeach

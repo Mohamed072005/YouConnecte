@@ -1,4 +1,3 @@
-@extends('authLayout.layout')
 @extends('layout.layout')
 @section('content')
 
