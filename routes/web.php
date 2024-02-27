@@ -6,9 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use APP\Http\Controllers\PusherController;
 use App\Http\Controllers\chatController;
-
-
-
+use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +59,8 @@ Route::post('/create/comments', [CommentController::class, 'store'])->name('stor
 Route::get('/profil', [PostController::class, 'getUserPosts'])->name('profil');
 
 Route::post('/like/{id}', [LikeController::class, 'store'])->name('like.action');
+
+Route::post('follow', [FollowController::class, 'store'])->name('store.follow');
 
 
 
