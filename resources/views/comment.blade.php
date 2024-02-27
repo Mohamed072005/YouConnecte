@@ -6,13 +6,25 @@
         <div class="mb-4 posts-container rounded">
             <div class="row posts-container border border-dark rounded">
                 <div class="col-md-12 mb-3 d-flex justify-content-between">
-                    <div class="ml-3">
+                    <div class="ml-3 fw-bold">
 
                         {{ $posts->user->name }}
 
                         <div class="small">3 days ago</div>
                     </div>
-                    <div class="mr-1">
+                    <div class="d-flex justify-content-between w-75">
+                        <div class="mt-2">
+                            @if(session('user_id') !== $posts->user_id)
+                            <form action="{{ route('store.follow') }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <input type="hidden" name="follower_id" value="{{ $posts->user_id }}">
+                                <button type="submit" class="bg-primary rounded bg-dark text-light border-light">Follow</button>
+                            </form>
+                            @else
+                            <h5 class="text-secondary small">public</h5>
+                            @endif
+                        </div>
 
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent; border: none;">
@@ -80,7 +92,7 @@
                                 </div>
                             </div>
                             @empty
-                            <p class="text-light">No comments yet.</p>
+                            <p class="">No comments yet.</p>
                             @endforelse
                             <form action="{{ route('store.comment') }}" method="post" class="row">
                                 @csrf
