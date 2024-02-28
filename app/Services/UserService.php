@@ -29,7 +29,7 @@ class UserService implements UserServiceInterface{
     }
 
     public function logout(){
-
+        return Auth::logout();
     }
 
 }
