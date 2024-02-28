@@ -11,14 +11,15 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use App\utils\UserMapper;
 
 
 class AuthController extends Controller
 {
 
-    protected $userS;
-    public function __construct(UserService $userS){
-        $this->userS = $userS;
+    private $userService;
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
     }
 
     public function register(Request $request){
@@ -27,13 +28,16 @@ class AuthController extends Controller
                     'password' =>['confirmed', 'required'],
                     'name' => ['required']
                 ]);
-        if($validated){
-            $name = $request->name;
-            $email = $request->email;
-            $password = $request->password;
-            $user = $this->userS->register($name, $email, $password);
+            
+        $user = UserMapper::requestToUser($request);
+        // dd($user);
+
+        $response = $this->userService->register($user);
+        // dd($response);
+
+        if($response['status']){
             return redirect()->route('to.login')
-            ->with('success', 'profil registered successfully');
+                        ->with('success', 'profil registered successfully');
         }
         else{
             return redirect()->route('register')->with('errorRegister','This email already used');
@@ -41,6 +45,19 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+        
+        $user = UserMapper::requestToUser($request);
+        // dd($user);
+
+        $response = $this->userService->login($user);
+        dd($response);
+
+
+    
+
+    }
+
+    public function login1(Request $request){
         $email = $request->email;
         $password = $request->password;
         $userlogin = $this->userS->login($email, $password);
