@@ -16,26 +16,62 @@ use App\Repositories\UserRepositoryInterface;
 class AuthController extends Controller
 {
 
-    // public function __construct(UserRepositoryInterface $UserRepository)
-    //     {
+    protected $userS;
+    public function __construct(UserService $userS){
+        $this->userS = $userS;
+    }
 
-    // }
-
-
-
-    public function login(Request $request)
-    {
-        $userData = $request->only('email', 'password');
-
-        if (Auth::attempt($userData)) {
-            $user = Auth::user();
-            session()->put('user_id', $user->id);
-            session()->put('user_name', $user->name);
-            return redirect()->route('home');
-        } else {
-            return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
+    public function register(Request $request){
+        $validated = request()->validate([
+                    'email' => ['unique:App\Models\User,email'],
+                    'password' =>['confirmed', 'required'],
+                    'name' => ['required']
+                ]);
+        if($validated){
+            $name = $request->name;
+            $email = $request->email;
+            $password = $request->password;
+            $user = $this->userS->register($name, $email, $password);
+            return redirect()->route('to.login')
+            ->with('success', 'profil registered successfully');
+        }
+        else{
+            return redirect()->route('register')->with('errorRegister','This email already used');
         }
     }
+
+    public function login(Request $request){
+        $userData = $request->only('email', 'password');
+        $userlogin = $this->userS->login([$userData]);
+
+        if(Auth::attempt($userlogin)){
+            $user= Auth::user();
+            session([
+                'user_id'=>$user->id,
+                'user_name'=>$user->name,
+            ]);
+            return redirect()->route('home');
+
+        }else{
+            return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
+
+        }
+
+    }
+
+    // public function login(Request $request)
+    // {
+    //     $userData = $request->only('email', 'password');
+
+    //     if (Auth::attempt($userData)) {
+    //         $user = Auth::user();
+    //         session()->put('user_id', $user->id);
+    //         session()->put('user_name', $user->name);
+    //         return redirect()->route('home');
+    //     } else {
+    //         return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
+    //     }
+    // }
 
     public function index()
     {
@@ -63,38 +99,7 @@ class AuthController extends Controller
     //     }
     // }
 
-        private $UserServicee;
-        public function __construct(UserService $UserServicee ){
-            $this->UserService = $UserServicee;
-        }
-        
 
-        public function register(Request $request)
-        { 
-        $validated = request()->validate([
-            'email' => ['required','unique:App\Models\User,email'],
-            'password' => ['confirmed', 'required'],
-            'name' => ['required']
-        ]);            
-
-        if($validated){          
-          
-            $name = $request->input('name');
-            $email = $request->email;
-            $password = Hash::make($request->password);
-            // dd($password);
-            
-
-            $this->UserService->register($name, $email, $password);
-
-            dd($UserService);
-
-        return redirect()->route('to.login');
-        }else{
-            return redirect()->route('register')->with('errorRegister','This email already used');
-        }
-
-        }
 
 
     public function logout( Request $request)

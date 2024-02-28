@@ -11,7 +11,7 @@ class UserServiceProvider extends ServiceProvider
 
     public $bindings = [
         ServerProvider::class => DigitalOceanServerProvider::class,
-        UserService::class => UserServiceInterface::class,
+        // UserService::class => UserServiceInterface::class,
     ];
     /**
      * Register services.
@@ -24,13 +24,13 @@ class UserServiceProvider extends ServiceProvider
     {
         // $this->app->bind(UserServiceInterface::class, ServiceProvider::class);
 
-        $this->app::bind(
-            'App\Repositories\UserRepository',
-            'App\Repositories\UserRepositoryInterface');
+        // $this->app::bind(
+        //     'App\Repositories\UserRepository',
+        //     'App\Repositories\UserRepositoryInterface');
 
-        $this->app::bind(
-            'App\Services\UserService',
-            'App\Services\Repositories\UserServiceInterface');
+        // $this->app::bind(
+        //     'App\Services\UserService',
+        //     'App\Services\UserServiceInterface');
     }
 
     /**
