@@ -41,21 +41,38 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $userData = $request->only('email', 'password');
-        $userlogin = $this->userS->login([$userData]);
+        // $userData = $request->only('email', 'password');
+        $email = $request->email;
+        $password = $request->password;
+        $userlogin = $this->userS->login($email, $password);
+        // dd($userlogin);
 
-        if(Auth::attempt($userlogin)){
+
+        if($userlogin == true){
             $user= Auth::user();
             session([
-                'user_id'=>$user->id,
-                'user_name'=>$user->name,
-            ]);
+                        'user_id'=>$user->id,
+                        'user_name'=>$user->name,
+                    ]);
+            // dd(session());
             return redirect()->route('home');
 
         }else{
             return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
-
         }
+
+        // if(Auth::attempt($userlogin)){
+        //     $user= Auth::user();
+        //     session([
+        //         'user_id'=>$user->id,
+        //         'user_name'=>$user->name,
+        //     ]);
+        //     return redirect()->route('home');
+
+        // }else{
+        //     return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
+
+        // }
 
     }
 

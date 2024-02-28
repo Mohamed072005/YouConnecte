@@ -20,8 +20,12 @@ class UserService implements UserServiceInterface{
         // dd($object);
         return $object;
     }
-    public function login(array $userData){
-       return Auth::attempt($userData);
+    public function login($email, $password){
+        
+       return Auth::attempt([
+        'email'=> $email,
+        'password'=> $password,
+       ]);
     }
 
     public function logout(){
