@@ -16,5 +16,12 @@ class UserMapper {
         return $user;
     }
 
+    public static function requestToLogin(Request $request) : Array{
+        $user = new user();
+        $user = $request->only('email', 'password');
+        return $user;
+
+    }
+
     
 }

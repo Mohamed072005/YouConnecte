@@ -45,35 +45,26 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        
-        $user = UserMapper::requestToUser($request);
+        $user = UserMapper::requestToLogin($request);
         // dd($user);
-
         $response = $this->userService->login($user);
-        dd($response);
-
-
-    
-
-    }
-
-    public function login1(Request $request){
-        $email = $request->email;
-        $password = $request->password;
-        $userlogin = $this->userS->login($email, $password);
-
-        if($userlogin == true){
-            $user= Auth::user();
-            session([
-                        'user_id'=>$user->id,
-                        'user_name'=>$user->name,
-                    ]);
-            return redirect()->route('home');
-
-        }else{
+        // dd($response);
+        if($response['status'] == true){
+            
+                $userApp= Auth::user();
+                    session([
+                            'user_id'=>$userApp->id,
+                            'user_name'=>$userApp->name,
+                        ]);
+                return redirect()->route('home');
+                // dd($userApp);
+        }
+        else{
             return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
         }
+
     }
+
 
     public function index()
     {
@@ -84,7 +75,7 @@ class AuthController extends Controller
     public function logout( Request $request)
     {
         $request->session()->flush();
-        $user= $this->userS->logout();
+        $user= $this->userService->logout();
         return redirect()->route('to.login');
     }
 }

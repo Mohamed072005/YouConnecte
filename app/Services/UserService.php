@@ -38,26 +38,25 @@ class UserService implements UserServiceInterface{
         return $user;
     }
 
-    public function login(User $user){
-        $user = new user;
-        try{
-            $user = Auth::attempt([
-                'email'=> $user->email,
-                'password'=> $user->password,
-               ]);
-            //    dd($user);
-               return [
-                "authentification" => $user,
-                "message" => "this user has been authenticate",
-                "status" => true
-               ];
-        }catch(\Exception $e){
+    public function login(Array $user){
+        try {
+
+            if(Auth::attempt($user, true)){
+                $appUser = Auth::user();
+            }
             return [
-                "authentification" => $user,
-                "message" => "Error: ". $e->getMessage(),
+                "user" => $appUser,
+                "message" => "Succes",
+                "status" => true
+            ];
+        } catch (\Exception $e) {
+            return [
+                "user" => false,
+                "message" => "Message : " . $e->getMessage(),
                 "status" => false
             ];
         }
+
 
     }
 
