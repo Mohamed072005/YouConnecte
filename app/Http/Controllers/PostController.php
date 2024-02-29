@@ -50,13 +50,15 @@ class PostController extends Controller
 
     public function getPosts(LikeController $like)
     {
+        if (session('user_id') == null) {
+            return redirect()->route('to.login')->with('loginError', 'You should make account befor do this action');
+        }
+
         $likes = $like->getLikes();
         $posts = Post::join('users', 'user_id', '=', 'users.id')
             ->get(['name', 'content', 'image', 'users.id as user_id', 'posts.id']);
-            // return response()->json($likes);
+        // return response()->json($likes);
         return view('home', compact('posts', 'likes'));
-        
-
     }
     //delete method working both in home and profil
     public function destroy($id)
@@ -102,21 +104,21 @@ class PostController extends Controller
     {
         $userid = session('user_id');
         $mypostsinfo = Db::table('posts')
-        ->where('posts.user_id',$userid)
-        ->join('users', 'posts.user_id', '=', 'users.id')
-        ->select('posts.content','posts.image','posts.id as postid','users.name','users.email', 'users.address', 'users.phone', 'users.id as hisid')->get();
+            ->where('posts.user_id', $userid)
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.content', 'posts.image', 'posts.id as postid', 'users.name', 'users.email', 'users.address', 'users.phone', 'users.id as hisid')->get();
 
         // dd($mypostsinfo);
-        $userinfo= DB::table('users')
-        ->where('id', $userid)->first();
+        $userinfo = DB::table('users')
+            ->where('id', $userid)->first();
         // dd($userinfo);
 
 
         $users = DB::table('users')
-        ->limit(15)
-        ->inRandomOrder()
-        ->get();
-        return view('profil', compact('mypostsinfo','users','userinfo')); 
+            ->limit(15)
+            ->inRandomOrder()
+            ->get();
+        return view('profil', compact('mypostsinfo', 'users', 'userinfo'));
     }
 
 
@@ -128,34 +130,33 @@ class PostController extends Controller
         $object->address = $request->input('address');
         $object->phone = $request->input('phone');
         // dd($object);
-        $object->save();        
+        $object->save();
         return redirect()->route('profil');
     }
 
-//update post in profil
-    public function updatepost(Request $request, $id){
+    //update post in profil
+    public function updatepost(Request $request, $id)
+    {
         $objectpost = Post::find($id);
 
         if ($request->hasFile('image_cover')) {
             $imagePath = $request->file('image_cover')->store('uploads', 'public');
         }
 
-        $objectpost->content= $request->input('content');
+        $objectpost->content = $request->input('content');
         $objectpost->image = $request->input('image_cover');
         $objectpost->save();
         return redirect()->route('profil');
-    
     }
 
     public function addPostView()
     {
         return view('AddPost');
-
     }
 
     public function addNewPost(Request $request)
     {
-        $object= new Post;
+        $object = new Post;
         $object->content = $request->content;
 
         if ($request->hasFile('image')) {
@@ -167,25 +168,26 @@ class PostController extends Controller
         // dd($object->image);
         $object->save();
         return redirect()->route('profil');
-
     }
 
-    public function deleteAccount(){
+    public function deleteAccount()
+    {
         $userid = session('user_id');
         $user = User::find($userid);
         $user->delete();
         return redirect()->route('to.login');
     }
 
-        //this function is used for seraching
-        public function search(){
-            $search_user= $_GET['search'];
-            $results = User::where('name', 'LIKE','%'.$search_user.'%')->get();
-            return view('search', compact('results'));
-        }
-    
+    //this function is used for seraching
+    public function search()
+    {
+        $search_user = $_GET['search'];
+        $results = User::where('name', 'LIKE', '%' . $search_user . '%')->get();
+        return view('search', compact('results'));
+    }
 
-  
+
+
 
 
     public function posts($id)
@@ -196,7 +198,4 @@ class PostController extends Controller
 
         return $posts;
     }
-
 }
-
-

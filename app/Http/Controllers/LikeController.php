@@ -3,32 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Services\LikeService;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
+
+    private $like;
+
+
+    public function __construct(LikeService $likes)
+    {
+        $this->like = $likes;
+    }
+
+
     public function store($id)
     {
         if (session('user_id') == null) {
             return redirect()->route('to.login')->with('actionError', 'You should make account befor do this action');
         }
 
-        $findLike = Like::where('post_id' ,$id)->where('user_id', session('user_id'))->first();
-        if ($findLike == null) {
-            Like::create([
-                'post_id' => $id,
-                'user_id' => session('user_id')
-            ]);
+        $resulte = $this->like->store($id);
+        if($resulte){
+            // return response()->json('add like success');
             return redirect()->route('home');
-        } else {
-            $findLike->delete();
+        }else{
+            // return response()->json('remove like success');
             return redirect()->route('home');
         }
     }
 
     public function getLikes()
     {
-        $likes = Like::all();
-        return $likes;
+        $resulte = $this->like->getLikes();
+        return response()->json($resulte);
     }
 }
