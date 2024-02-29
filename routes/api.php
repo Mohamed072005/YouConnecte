@@ -32,3 +32,5 @@ Route::get('/comments/{id}', [CommentController::class, 'getComments']);
 Route::post('/create/comments/{id}', [CommentController::class, 'store']);
 
 Route::get('/like/{id}', [LikeController::class, 'store']);
+
+Route::get('/likes', [LikeController::class, 'getLikes']);
