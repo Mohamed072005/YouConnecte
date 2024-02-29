@@ -11,14 +11,15 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use App\utils\UserMapper;
 
 
 class AuthController extends Controller
 {
 
-    protected $userS;
-    public function __construct(UserService $userS){
-        $this->userS = $userS;
+    private $userService;
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
     }
 
     public function register(Request $request){
@@ -27,13 +28,16 @@ class AuthController extends Controller
                     'password' =>['confirmed', 'required'],
                     'name' => ['required']
                 ]);
-        if($validated){
-            $name = $request->name;
-            $email = $request->email;
-            $password = $request->password;
-            $user = $this->userS->register($name, $email, $password);
+            
+        $user = UserMapper::requestToUser($request);
+        // dd($user);
+
+        $response = $this->userService->register($user);
+        // dd($response);
+
+        if($response['status']){
             return redirect()->route('to.login')
-            ->with('success', 'profil registered successfully');
+                        ->with('success', 'profil registered successfully');
         }
         else{
             return redirect()->route('register')->with('errorRegister','This email already used');
@@ -41,91 +45,38 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        // $userData = $request->only('email', 'password');
-        $email = $request->email;
-        $password = $request->password;
-        $userlogin = $this->userS->login($email, $password);
-        // dd($userlogin);
-
-
-        if($userlogin == true){
-            $user= Auth::user();
-            session([
-                        'user_id'=>$user->id,
-                        'user_name'=>$user->name,
-                    ]);
-            // dd(session());
-            return redirect()->route('home');
-
-        }else{
+        $user = UserMapper::requestToLogin($request);
+        // dd($user);
+        $response = $this->userService->login($user);
+        // dd($response);
+        if($response['status'] == true){
+            
+                $userApp= Auth::user();
+                    session([
+                            'user_id'=>$userApp->id,
+                            'user_name'=>$userApp->name,
+                        ]);
+                return redirect()->route('home');
+                // dd($userApp);
+        }
+        else{
             return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
         }
 
-        // if(Auth::attempt($userlogin)){
-        //     $user= Auth::user();
-        //     session([
-        //         'user_id'=>$user->id,
-        //         'user_name'=>$user->name,
-        //     ]);
-        //     return redirect()->route('home');
-
-        // }else{
-        //     return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
-
-        // }
-
     }
 
-    // public function login(Request $request)
-    // {
-    //     $userData = $request->only('email', 'password');
-
-    //     if (Auth::attempt($userData)) {
-    //         $user = Auth::user();
-    //         session()->put('user_id', $user->id);
-    //         session()->put('user_name', $user->name);
-    //         return redirect()->route('home');
-    //     } else {
-    //         return redirect()->route('to.login')->with('loginError', 'Invalid email or password.');
-    //     }
-    // }
 
     public function index()
     {
         return view('register');
     }
 
-    // public function register(Request $request)
-    // {
-
-    //     $validated = request()->validate([
-    //         'email' => ['unique:App\Models\User,email']
-    //     ]);
-
-    //     if ($validated) {
-    //         $object = new User;
-    //         $object->name = $request->name;
-    //         $object->email = $request->email;
-    //         $object->password = Hash::make($request->password);
-    //         $object->save();
-    //         // dd($object);
-    //         return redirect()->route('to.login')
-    //             ->with('success', 'profil registered successfully');
-    //     }else {
-    //         return redirect()->route('register')->with('errorRegister','This email already used');
-    //     }
-    // }
-
-
-
 
     public function logout( Request $request)
     {
-
-        // dd(session('user_name'));
         $request->session()->flush();
-        Auth::logout();
+        $user= $this->userService->logout();
         return redirect()->route('to.login');
-
     }
 }
+
