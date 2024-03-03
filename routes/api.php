@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/home', [PostController::class, 'getPosts']);
+
+Route::post('/share/post', [PostController::class, 'store']);
+
+
+Route::get('/comments/{id}', [CommentController::class, 'getComments']);
+
+Route::post('/create/comments/{id}', [CommentController::class, 'store']);
+
+Route::get('/like/{id}', [LikeController::class, 'store']);
+
+Route::get('/likes', [LikeController::class, 'getLikes']);
